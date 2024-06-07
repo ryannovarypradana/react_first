@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react'
+import { TodoContext } from '../App'
 
-const TodoItem = ({ todo, toggleCompleted, deleteTodo }) => {
+const TodoItem = ({ todo}) => {
   const getTodoTitleStyle = () => {
     return {
       textDecoration: todo.completed ? 'line-through' : 'none',
@@ -8,6 +9,8 @@ const TodoItem = ({ todo, toggleCompleted, deleteTodo }) => {
       flex: 1,
     };
   };
+
+  const {toggleCompleted, deleteTodo} = useContext(TodoContext)
 
   return (
     <div style={styles.todoItem}>
