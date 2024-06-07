@@ -1,6 +1,5 @@
-import { useState } from 'react'
-import Todos from './components/Todos'; 
-
+import { useState } from 'react';
+import Todos from './components/Todos';
 
 function App() {
   const [todos, setTodos] = useState([
@@ -19,37 +18,43 @@ function App() {
       title: 'Study React with Ninja Ken',
       completed: false,
     },
-  ])
+  ]);
 
   const toggleCompleted = (todoId) => {
     const updatedTodos = todos.map((todo) => {
       if (todo.id === todoId) {
-        todo.completed = !todo.completed
+        todo.completed = !todo.completed;
       }
-      return todo
-    })
-    setTodos(updatedTodos)
-  }
+      return todo;
+    });
+    setTodos(updatedTodos);
+  };
 
-  console.log(todos)
+  const deleteTodo = (todoId) => {
+    const updatedTodos = todos.filter((todo) => todo.id !== todoId);
+    setTodos(updatedTodos);
+  };
 
   return (
     <div style={styles.container}>
-    <h1 style={styles.title}>My Todo List</h1>
-    {/* Teruskan function toggleCompleted ke component Todos */}
-    <Todos todos={todos} toggleCompleted={toggleCompleted} />
-  </div>
-  )
+      <h1 style={styles.title}>My Todo List</h1>
+      <Todos todos={todos} toggleCompleted={toggleCompleted} deleteTodo={deleteTodo} />
+    </div>
+  );
 }
 
 const styles = {
   container: {
     textAlign: 'center',
-    padding: '12px',
+    padding: '20px',
+    backgroundColor: '#f4f4f4',
+    minHeight: '100vh',
   },
   title: {
     fontSize: '36px',
+    margin: '20px 0',
+    color:'black',
   },
-}
+};
 
-export default App
+export default App;
