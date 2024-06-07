@@ -1,42 +1,56 @@
-import React from 'react'
+import React from 'react';
 
-const TodoItem = ({ todo, toggleCompleted }) => {
+const TodoItem = ({ todo, toggleCompleted, deleteTodo }) => {
   const getTodoTitleStyle = () => {
-    if (todo.completed === true) {
-      return { textDecoration: 'line-through' }
-    } else {
-      return { textDecoration: 'none' }
-    }
-  }
+    return {
+      textDecoration: todo.completed ? 'line-through' : 'none',
+      margin: 0,
+      flex: 1,
+    };
+  };
 
   return (
     <div style={styles.todoItem}>
-    <input
-      type="checkbox"
-      style={styles.checkbox}
-      //  Memberikan id dari todo sebagai argument
-      onChange={() => toggleCompleted(todo.id)}
-    />
-    <p style={getTodoTitleStyle()}>{todo.title}</p>
-  </div>
-  )
-}
+      <input
+        type="checkbox"
+        checked={todo.completed}
+        onChange={() => toggleCompleted(todo.id)}
+        style={styles.checkbox}
+      />
+      <p style={getTodoTitleStyle()}>{todo.title}</p>
+      <button onClick={() => deleteTodo(todo.id)} style={styles.button}>x</button>
+    </div>
+  );
+};
 
 const styles = {
   todoItem: {
-    border: '2px solid #f4f4f4',
-    fontSize: '24px',
-    // Tambahkan styles di bawah ini
     display: 'flex',
-    justifyContent: 'center',
     alignItems: 'center',
+    justifyContent: 'space-between',
+    backgroundColor: '#4105f4',
+    border: '1px solid #ddd',
+    padding: '15px',
+    marginBottom: '10px',
+    borderRadius: '5px',
   },
-  // Tambahkan styles di bawah ini
   checkbox: {
     marginRight: '10px',
-    height: '18px',
-    width: '18px',
+    alignItems: 'center',
   },
-}
+  button: {
+    backgroundColor: '#BB0000',
+    color: '#fff',
+    border: 'none',
+    borderRadius: '50%',
+    cursor: 'pointer',
+    fontSize: '18px',
+    width: '30px',
+    height: '30px',
+    textAlign: 'center',
+    lineHeight: '10px',
+    
+  },
+};
 
-export default TodoItem
+export default TodoItem;
