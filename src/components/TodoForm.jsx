@@ -8,7 +8,8 @@ const TodoForm = ({ addTodo }) => {
     const handleSubmit = (event) => {
         event.preventDefault()
         addTodo(title) // Teruskan "title" sebagai argument
-      }
+        setTitle('')
+    }
 
        // Definisikan function "handleChangeTitle"
        const handleChangeTitle = (event) => {
@@ -31,6 +32,7 @@ const TodoForm = ({ addTodo }) => {
             onChange={(event) => {
               handleChangeTitle(event)
               }}
+              value={title}
           />
           <button style={styles.button}>Add Todo</button>
         </form>
